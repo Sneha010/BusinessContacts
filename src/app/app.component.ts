@@ -105,4 +105,28 @@ export class AppComponent implements OnInit {
     this.activeZipcode = business.zipcode;
 
   }
+
+  updateBusiness() {
+    let upBusiness = {
+      company: this.activeCompany,
+      category: this.activeCategory,
+      years_in_business: this.activeYears_in_business,
+      description: this.activeDescription,
+      phone: this.activePhone,
+      email: this.activeEmail,
+      street_address: this.activeStreet_address,
+      city: this.activeCity,
+      state: this.activeState,
+      zipcode: this.activeZipcode
+    }
+
+    this._firebaseService.updateBusiness(this.activeKey, upBusiness);
+    this.changeState('default', 'default');
+  }
+
+  deleteBusiness(key) {
+    this._firebaseService.deleteBusiness(key);
+    this.changeState('default', 'default');
+  }
+
 }
